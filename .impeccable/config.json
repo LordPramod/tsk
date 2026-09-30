@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/app/globals.css"
+        ],
+        "createdAt": "2026-09-30T08:30:00.787Z",
+        "reason": "Assignment spec frontend-task.pdf section 2 mandates H1 key phrases use linear-gradient(90deg, #0F9488, #E0A930, #7FAE3A) clipped to text"
+      }
+    ]
+  }
+}

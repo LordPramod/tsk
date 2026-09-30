@@ -1,57 +1,40 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { cn } from "../utils";
 
 type RevealProps = {
-  children: ReactNode;
   index?: number;
   className?: string;
+  children: ReactNode;
 };
 
-export const Reveal = ({
-  children,
-  index = 0,
-  className = "",
-}: RevealProps) => {
+export const Reveal = ({ index = 0, className, children }: RevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const element = ref.current;
+    if (!element) return;
 
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduce || !("IntersectionObserver" in window)) {
-      queueMicrotask(() => setVisible(true));
-      return;
-    }
-
-    const io = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
+        if (!entry?.isIntersecting) return;
+        setIsVisible(true);
+        observer.disconnect();
       },
-      { threshold: 0.15 },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
     );
-    io.observe(el);
-    return () => io.disconnect();
+
+    observer.observe(element);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`}
-      style={{ "--i": index } as CSSProperties}
+      className={cn("reveal", isVisible && "is-visible", className)}
+      style={{ "--reveal-index": index } as CSSProperties}
     >
       {children}
     </div>

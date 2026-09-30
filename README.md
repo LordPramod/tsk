@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Chautari
 
-## Getting Started
+Marketing website for **Digital Chautari**, a creative technology company in Kathmandu, Nepal, offering digital marketing, content creation and health-tech software.
 
-First, run the development server:
+Built with Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS v4.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script       | What it does                        |
+| ------------ | ----------------------------------- |
+| `yarn dev`   | Start the development server        |
+| `yarn build` | Create a production build           |
+| `yarn start` | Serve the production build          |
+| `yarn lint`  | Run ESLint                          |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pages
 
-## Learn More
+| Route       | Sections                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| `/`         | Hero with stat bar, feature strip, who we are, impact stats, ventures, sectors, process, testimonials, blog, CTA |
+| `/services` | Service categories, pricing, industries, why work with us, CTA                                     |
+| `/products` | Tabbed product switcher with UI previews, Physio@Home spotlight                                    |
+| `/about`    | Story, mission and vision, values, quality and trust, team, roadmap, CTA                           |
+| `/contact`  | Contact details, department emails, contact form, map, FAQ callout, response times                 |
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/app
+├── <route>/page.tsx        Route files, composition only
+├── layout.tsx              Fonts, metadata, header and footer
+├── template.tsx            Page transition wrapper
+├── globals.css             Design tokens and shared utilities
+└── shared
+    ├── components          Reusable UI (Button, Hero, Section, StatBar, FeatureCard, form fields, ...)
+    ├── sections/<page>     Page-specific sections
+    ├── constant            Typed content for every page
+    ├── actions             Server actions
+    ├── types               Shared TypeScript types
+    └── utils               Helpers and contact form validation
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
